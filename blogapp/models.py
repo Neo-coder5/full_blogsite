@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -27,6 +29,10 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-publish',)
+
+    def __init__(self, *args: Any, **kwargs: Any):
+        super().__init__(*args, **kwargs)
+        self.comments = None
 
     def __str__(self):
         return self.title
